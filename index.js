@@ -1,5 +1,9 @@
 const express = require('express');
+const dotenv = require('dotenv');
+const pool = require('./config');
+
 const app = express();
+dotenv.config();
 
 app.get('/', (req, res) => {
     res.send('Simple API homepage');
