@@ -17,6 +17,7 @@ app.get('/api/treks', async (req, res) => {
     const rows = await pool.query(
         'SELECT * FROM treks;'
     );
+    console.log(rows);
     res.json({ rows });
   } catch (error) {
     console.log(error);
