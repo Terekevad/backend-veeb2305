@@ -17,16 +17,16 @@ app.get('/api/treks', async (req, res) => {
     const rows = await pool.query(
         'SELECT * FROM treks;'
     );
-    console.log(rows);
     res.json({ rows });
   } catch (error) {
     console.log(error);
-    res.status(500).send(error.message)
+    res.status(500).send({error: error.message})
   }
 });
  
 app.post('/api/treks', async (req, res) => {
   console.log(req.body);
+  res.status(201);
   try {
     const { rows } = await pool.query(`
       INSERT INTO treks (
