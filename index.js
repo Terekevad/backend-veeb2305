@@ -34,7 +34,7 @@ app.post('/api/treks', async (req, res) => {
       longitude,
       price,
       image_url,
-      start_time
+      start_time,
       end_time,
       description
     ) VALUES (
@@ -45,7 +45,7 @@ app.post('/api/treks', async (req, res) => {
     '${req.body.imageUrl}',
     '${req.body.startTime}',
     '${req.body.endTime}',
-    '${req.body.description}',
+    '${req.body.description}'
     ); 
     `);
   res.status(201).json({ok: 'ok'});
@@ -57,19 +57,20 @@ app.post('/api/treks', async (req, res) => {
 
 app.put('/api/treks/:trekId', async (req, res) => {
   const trekId = req.params.trekId;
-  console.log(req.body);
+  console.log(trekId, req.body);
+  
   try {
     const { rows } = await pool.query(`
     UPDATE treks 
     SET 
       name = '${req.body.name}',
       latitude = '${req.body.latitude}',
-      longitude,
-      price,
-      image_url,
-      start_time
-      end_time,
-      description
+      longitude,'${req.body.latitude}',
+      price,'${req.body.latitude}',
+      image_url,'${req.body.latitude}',
+      start_time,'${req.body.latitude}',
+      end_time,'${req.body.latitude}',
+      description'${req.body.latitude}',
     WHERE id = ${trekId};
     '${req.body.name}',
     '${req.body.latitude}',
@@ -78,7 +79,7 @@ app.put('/api/treks/:trekId', async (req, res) => {
     '${req.body.imageUrl}',
     '${req.body.startTime}',
     '${req.body.endTime}',
-    '${req.body.description}',
+    '${req.body.description}'
     ); 
     `);
     res.json(rows);
