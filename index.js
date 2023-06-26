@@ -62,16 +62,26 @@ app.put('/api/treks/:trekId', async (req, res) => {
     const { rows } = await pool.query(`
       UPDATE treks 
       SET 
-      name = '${req.body.name}',
-      latitude = '${req.body.latitude}',
-      longitude = '${req.body.longitude}',
-      price = '${req.body.price}',
-      image_url = '${req.body.image_url}',
-      start_time = '${req.body.start_time}',
-      end_time = '${req.body.end_time}',
-      description = '${req.body.description}',
-    WHERE id = ${trekId};
-    `);
+        name = $1,
+        latitude = $2,
+        longitude = $3,
+        price = $4,
+        image_url = $5,
+        start_time = $6,
+        end_time = $7,
+        description = $8
+    WHERE id = $9
+    `, [
+        req.body.name,
+        req.body.latitude,
+        req.body.longitude,
+        req.body.price,
+        req.body.imageUrl,
+        req.body.startTime,
+        req.body.endTime,
+        req.body.description,
+        trekId
+    ]);
     res.json(rows);
   } catch (error) {
     console.log(error);
